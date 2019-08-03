@@ -14,7 +14,7 @@ const container = require('./container');
 
 
 
-container.resolve(function(users){
+container.resolve(function(users,_){
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/bellamuchaela',{useMongoClient: true});
@@ -46,7 +46,7 @@ mongoose.connect('mongodb://localhost/bellamuchaela',{useMongoClient: true});
     app.set('view engine','ejs');
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended:true}));
-    //app.use(validator());
+    app.use(validator());
     app.use(session({
       secret:'thisisasecretkey',
       resave:false,
@@ -56,6 +56,8 @@ mongoose.connect('mongodb://localhost/bellamuchaela',{useMongoClient: true});
     app.use(flash());
     app.use(passport.initialize());
     app.use(passport.session());
+
+    app.locals._=_;
   }
 
 });

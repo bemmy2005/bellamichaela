@@ -16,8 +16,8 @@ module.exports=function(_,passport,User){
       return res.render('index');
     },
     getSignUp:function(req,res){
-      const errors=req.flash('error')
-      return res.render('signup',{title:'bellamichaela | Login',message:errors,hasErrors:errors.length>0});
+      const errors =  req.flash('error')
+      return res.render('signup',{title:'bellamichaela | Login',messages:errors,hasErrors:errors.length>0});
     },
     postSignUp: passport.authenticate('local.signup',{
       successRedirect:'/home',
