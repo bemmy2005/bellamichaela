@@ -13,7 +13,7 @@ passport.deserializeUser((id,done)=>{
   });
 });
 
-//passport middleware
+//passport middleware Signup
 passport.use('local.signup',new LocalStrategy({
   usernameField:'email',
   passwordField:'password',
@@ -35,5 +35,25 @@ passport.use('local.signup',new LocalStrategy({
       done(null, newUser);
     });
 
+  });
+}));
+
+
+//passport middleware SignIn
+passport.use('local.login',new LocalStrategy({
+  usernameField:'email',
+  passwordField:'password',
+  passReqToCallback:true
+}, (req, email, password, done) => {
+   User.findOne({'email':email},(err,user)=>{
+    if(err){
+      return done(err);
+    }
+  const messages=[];
+  if(!user ||!user.validUserPassword(password)){
+    messages.push('Email does not exist or password is invalid')
+    return done(null, false,req.flash('error',messages));
+  }
+return done(null, user);
   });
 }));

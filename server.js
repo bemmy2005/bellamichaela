@@ -17,6 +17,7 @@ const container = require('./container');
 container.resolve(function(users,_){
 
 mongoose.Promise = global.Promise;
+//mongoose.connect('mongodb://localhost/bellamuchaela');
 mongoose.connect('mongodb://localhost/bellamuchaela',{useMongoClient: true});
   const app =  SetupExpress();
   function SetupExpress(){
