@@ -14,7 +14,7 @@ const container = require('./container');
 
 
 
-container.resolve(function(users,_){
+container.resolve(function(users,_,admin,home){
 
 mongoose.Promise = global.Promise;
 //mongoose.connect('mongodb://localhost/bellamuchaela');
@@ -35,6 +35,8 @@ mongoose.connect('mongodb://localhost/bellamuchaela',{useMongoClient: true});
     //Setup router
     const router = require('express-promise-router')();
     users.SetRouting(router);
+    admin.SetRouting(router);
+    home.SetRouting(router);
 
     app.use(router);
   }
