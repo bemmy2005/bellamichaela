@@ -31,7 +31,7 @@
     "express-session": "^1.15.4",
     "express-validator": "^3.2.1",
     "formidable": "^1.1.1",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.13",
     "mongodb": "^3.3.0-beta2",
     "mongoose": "^4.11.4",
     "outdated": "^0.1.1",
